@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-color: rgb(56, 35, 61);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container{
+            width: 30%;
+            height: 55vh;
+            border: 1px solid whitesmoke;
+            text-align: center;
+            color: whitesmoke;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .target{
+            width: 32.8%;
+            height: 14vh;
+            border: 1px solid wheat;
+            font-size: 45px;
+            padding-top: 4vh;
+            background: grey;
+        }
+        .target:hover{
+            cursor: pointer;
+            background: rgb(83, 83, 83);
+        }
+        .o{
+            color: green !important;
+        }
+        .x{
+            color: red !important;
+        }
+        #reset{
+            position: absolute;
+            bottom: 13%;
+            height: 7%;
+            width: 30.3%;
+            border: 3px solid wheat;
+            font-size: 20px;
+            letter-spacing: 2px;
+            box-sizing: border-box;
+            background: transparent;
+            color: silver;
+        }
+        #reset:hover{
+            background: rgb(83, 83, 83);
+            cursor: pointer;
+            color: wheat;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="target" id="default1">+</div>
+        <div class="target" id="default2">+</div>
+        <div class="target" id="default3">+</div>
+        <div class="target" id="default4">+</div>
+        <div class="target" id="default5">+</div>
+        <div class="target" id="default6">+</div>
+        <div class="target" id="default7">+</div>
+        <div class="target" id="default8">+</div>
+        <div class="target" id="default9">+</div>
+    </div>
+    <div class="result"></div>
+    <button id="reset">Reset</button>
+<script src="./jquery-3.4.1.min.js"></script>
+<script>
+    $(document).ready(function(){
+
+        var o = 'o';
+        var x = 'x';
+        var turns = 1;
+
+        var spot1 = $('#default1')
+        var spot2 = $('#default2')
+        var spot3 = $('#default3')
+        var spot4 = $('#default4')
+        var spot5 = $('#default5')
+        var spot6 = $('#default6')
+        var spot7 = $('#default7')
+        var spot8 = $('#default8')
+        var spot9 = $('#default9')
+        var reset = $('#reset')
+        
+        $('.target').on('click', function(){
+            
+            if($(this).hasClass('o') || $(this).hasClass('x')){
+                alert('Already Filled')
+            } else if(turns === 9){
+                alert("Tie")
+            }
+            else if(turns%2 == 0){
+                turns++;
+                $(this).text(o)
+                $(this).addClass('o');
+                
+            if(spot1.hasClass('o') && spot2.hasClass('o') && spot3.hasClass('o') ||
+            spot4.hasClass('o') && spot5.hasClass('o') && spot6.hasClass('o') ||
+            spot7.hasClass('o') && spot8.hasClass('o') && spot9.hasClass('o') ||
+            spot1.hasClass('o') && spot4.hasClass('o') && spot7.hasClass('o') ||
+            spot2.hasClass('o') && spot5.hasClass('o') && spot8.hasClass('o') ||
+            spot3.hasClass('o') && spot6.hasClass('o') && spot9.hasClass('o') ||
+            spot1.hasClass('o') && spot5.hasClass('o') && spot9.hasClass('o') ||
+            spot3.hasClass('o') && spot5.hasClass('o') && spot7.hasClass('o')  ){
+                
+                alert('Winner : "O"');
+            
+            }
+            }else if(turns%2 != 0){  
+                turns++;
+                $(this).text(x);
+                $(this).addClass('x');
+                
+                if(spot1.hasClass('x') && spot2.hasClass('x') && spot3.hasClass('x') ||
+            spot4.hasClass('x') && spot5.hasClass('x') && spot6.hasClass('x') ||
+            spot7.hasClass('x') && spot8.hasClass('x') && spot9.hasClass('x') ||
+            spot1.hasClass('x') && spot4.hasClass('x') && spot7.hasClass('x') ||
+            spot2.hasClass('x') && spot5.hasClass('x') && spot8.hasClass('x') ||
+            spot3.hasClass('x') && spot6.hasClass('x') && spot9.hasClass('x') ||
+            spot1.hasClass('x') && spot5.hasClass('x') && spot9.hasClass('x') ||
+            spot3.hasClass('x') && spot5.hasClass('x') && spot7.hasClass('x') )
+            {
+                
+                alert('Winner : "X"');
+                
+            }
+            }
+        })
+        reset.on('click',function(){
+        $('.target').removeClass('o');
+        $('.target').removeClass('x');
+        $('.target').text('+');
+        turns=1;
+    })
+        
+    })
+  
+
+        
+</script>    
+</body>
+</html>
